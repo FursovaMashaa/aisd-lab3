@@ -267,5 +267,90 @@ namespace sorts {
     }
 
 
+    stats one_rand_merge(int size, int seed) {
+        stats s;
+        vector<int> t;
+        mt19937 generator(seed);
+        uniform_int_distribution<> distribution(0, 10000);
+        for (int i = 0; i < size; i++) { t.push_back(distribution(generator)); }
+        merge_sort(t, s);
+        return s;
+    }
+
+    void cycle_rand_merge() {
+        int len[] = { 1000,3000,5000,10000,25000,50000,100000 };
+        ofstream fout;
+        fout.open("C:\\Users\\furso\\Desktop\\aisd-lab3\\mergeSort_rand.txt");
+        for (int i = 0; i < 7; i++) {
+            stats s;
+            for (int j = 0; j < 100; j++) {
+                stats t;
+                t = one_rand_merge(len[i], j * 10 + i);
+                s.comparison_count += t.comparison_count;
+                s.copy_count += t.copy_count;
+            }
+            s.comparison_count /= 100;
+            s.copy_count /= 100;
+            if (fout.is_open()) { fout << len[i] << " " << s.comparison_count << " " << s.copy_count << endl; }
+        }
+        fout.close();
+    }
+    stats one_ord_merge(int size) {
+        stats s;
+        vector<int> t;
+        for (int i = 0; i < size; i++) { t.push_back(i); }
+        merge_sort(t, s);
+        return s;
+    }
+
+    void cycle_ord_merge() {
+        int len[] = { 1000,3000,5000,10000,25000,50000,100000 };
+        ofstream fout;
+        fout.open("C:\\Users\\furso\\Desktop\\aisd-lab3\\mergeSort_order.txt");
+        for (int i = 0; i < 7; i++) {
+            stats s;
+            for (int j = 0; j < 100; j++) {
+                stats t;
+                t = one_ord_merge(len[i]);
+                s.comparison_count += t.comparison_count;
+                s.copy_count += t.copy_count;
+            }
+            s.comparison_count /= 100;
+            s.copy_count /= 100;
+            if (fout.is_open()) { fout << len[i] << " " << s.comparison_count << " " << s.copy_count << endl; }
+        }
+        fout.close();
+    }
+
+    stats one_revers_merge(int size) {
+        stats s;
+        vector<int> t;
+        for (int i = size; i > 0; i--) {
+            t.push_back(i);
+        }
+        merge_sort(t, s);
+        return s;
+    }
+
+    void cycle_revers_merge() {
+        int len[] = { 1000,3000,5000,10000,25000,50000,100000 };
+        ofstream fout;
+        fout.open("C:\\Users\\furso\\Desktop\\aisd-lab3\\mergeSort_revers.txt");
+        for (int i = 0; i < 7; i++) {
+            stats s;
+            for (int j = 0; j < 100; j++) {
+                stats t;
+                t = one_revers_merge(len[i]);
+                s.comparison_count += t.comparison_count;
+                s.copy_count += t.copy_count;
+            }
+            s.comparison_count /= 100;
+            s.copy_count /= 100;
+            if (fout.is_open()) { fout << len[i] << " " << s.comparison_count << " " << s.copy_count << endl; }
+        }
+        fout.close();
+    }
+
+
 
 };

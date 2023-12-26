@@ -54,3 +54,11 @@ TEST(Tests6, quickSort_1) {
 	cycle_revers_quick();
 	EXPECT_EQ(1, 1);
 }
+
+TEST(Tests6, mergeSort_1) {
+	setlocale(LC_ALL, "Rus");
+	cycle_rand_merge();
+	cycle_ord_merge();
+	cycle_revers_merge();
+	EXPECT_EQ(1, 1);
+}
