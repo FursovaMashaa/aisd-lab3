@@ -38,3 +38,19 @@ TEST(Test4, merge_sort2) {
 	merge_sort(a, s);
 	EXPECT_EQ(a, b);
 };
+
+/*TEST(Tests5, insertionSort_1) {
+	setlocale(LC_ALL, "Rus");
+	cycle_rand_insertion();
+	cycle_ord_insertion();
+	cycle_revers_insertion();
+	EXPECT_EQ(1, 1);
+}*/
+
+TEST(Tests6, quickSort_1) {
+	setlocale(LC_ALL, "Rus");
+	cycle_rand_quick();
+	cycle_ord_quick();
+	cycle_revers_quick();
+	EXPECT_EQ(1, 1);
+}
